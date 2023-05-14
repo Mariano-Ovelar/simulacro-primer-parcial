@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './pages/error/error.component';
 
 const routes: Routes = [
+/*   {
+    path: '',
+    component: BienvenidoComponent
+  }, */
   {
     path: '',
     redirectTo: 'bienvenido',

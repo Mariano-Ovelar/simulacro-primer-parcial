@@ -25,7 +25,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     SharedModule,
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
     
   ],
   providers: [],
