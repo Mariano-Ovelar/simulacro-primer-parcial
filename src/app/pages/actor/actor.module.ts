@@ -7,6 +7,7 @@ import { ActorListadoComponent } from './pages/actor-listado/actor-listado.compo
 import { ActorAltaComponent } from './pages/actor-alta/actor-alta.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ActorPeliculaComponent } from './pages/actor-pelicula/actor-pelicula.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ActorComponent,
     ActorListadoComponent,
     ActorAltaComponent,
+    ActorPeliculaComponent,
   ],
   imports: [
     CommonModule,

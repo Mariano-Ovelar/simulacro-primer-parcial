@@ -12,7 +12,7 @@ export class ModificarPeliculaComponent {
   generosPelicula = ['terror', 'comedia', 'amor', 'otros'];
 
   pelicula: Pelicula = {
-    id: 0,
+    id: '',
     nombre: '',
     tipo: tipoPelicula.amor,
     fechaEstreno: new Date(),

@@ -1,4 +1,3 @@
-
 export enum tipoPelicula {
   terror,
   comedia,
@@ -6,7 +5,7 @@ export enum tipoPelicula {
   otros,
 }
 interface IPelicula {
-  id: number;
+  id?: string;
   nombre: string;
   tipo: tipoPelicula;
   fechaEstreno: Date;
@@ -15,7 +14,7 @@ interface IPelicula {
 }
 
 export class Pelicula {
-  id: number = 0;
+  id?: string = '';
   nombre: string = '';
   tipo: tipoPelicula = tipoPelicula.otros;
   fechaEstreno: Date = new Date();

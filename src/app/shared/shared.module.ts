@@ -10,6 +10,9 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { OverlayComponent } from './components/overlay/overlay.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { DetalleActorComponent } from './components/detalle-actor/detalle-actor.component';
+import { DetallePaisComponent } from './components/detalle-pais/detalle-pais.component';
+import { ListadoPeliculasComponent } from './components/listado-peliculas/listado-peliculas.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     DetallePeliculaComponent,
     OverlayComponent,
     SpinnerComponent,
+    DetalleActorComponent,
+    DetallePaisComponent,
+    ListadoPeliculasComponent,
   ],
   exports: [
     NavbarComponent,
@@ -31,6 +37,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     DetallePeliculaComponent,
     OverlayComponent,
     SpinnerComponent,
+    DetalleActorComponent,
+    DetallePaisComponent,
+    ListadoPeliculasComponent,
+
   ],
   imports: [CommonModule, FormsModule, RouterModule,FormsModule],
 })

@@ -26,14 +26,14 @@ export class PeliculaAltaComponent {
   ) {}
 
   actorSeleccionado?: any;
-  pelicula: any = {
+  /*   pelicula: any = {
     id: 0,
     nombre: '',
     tipo: tipoPelicula[0],
     fechaEstreno: Fecha.getFechaActual(),
     cantidadPublico: 0,
     fotoPelicula: '',
-  };
+  }; */
   generosPelicula = ['terror', 'comedia', 'amor', 'otros'];
   listaActores: any;
   img: string = '';
@@ -42,9 +42,10 @@ export class PeliculaAltaComponent {
   ngOnInit() {
     this.movieForm = this.formBuilder.group({
       nombre: ['', Validators.required],
-      fechaEstreno: ['', Validators.required],
-      tipo: ['', Validators.required],
-      cantidadPublico: ['', Validators.required],
+      fechaEstreno: [Fecha.getFechaActual(), Validators.required],
+      tipo: [tipoPelicula[0], Validators.required],
+      cantidadPublico: [0, Validators.required],
+      actor: [''],
     });
 
     this.actorSrv.traer().then((actores) => {
@@ -54,7 +55,7 @@ export class PeliculaAltaComponent {
 
   actorElegido($event: any) {
     this.actorSeleccionado = $event;
-    this.pelicula.actor = this.actorSeleccionado;
+    this.movieForm.value.actor = this.actorSeleccionado;
   }
 
   guardar() {
@@ -64,7 +65,6 @@ export class PeliculaAltaComponent {
         this.router.navigateByUrl('/peliculas/listado');
       }, 3000);
     });
-    console.log(this.pelicula);
   }
   capturarFile($event: any) {
     const file: File = $event.target.files[0];

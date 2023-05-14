@@ -18,21 +18,21 @@
               </div>
               <div>
                 <label for="">Título:</label>
-                <input name="nombre" type="text" [(ngModel)]="pelicula.nombre" formControlName="nombre" />
+                <input name="nombre" type="text" [(ngModel)]="movieForm.value.nombre" formControlName="nombre" />
               </div>
               <div>
                 <label for="">Fecha de estreno:</label>
-                <input type="date" [(ngModel)]="pelicula.fechaEstreno" value="2023-02-01" name="fechaEstreno" formControlName="fechaEstreno" />
+                <input type="date" [(ngModel)]="movieForm.value.fechaEstreno" value="2023-02-01" name="fechaEstreno" formControlName="fechaEstreno" />
               </div>
               <div>
                 <label for="">Género:</label>
-                <select name="tipo" name="miselect" [(ngModel)]="pelicula.tipo" formControlName="tipo">
-                  <option [value]="pelicula.tipo" *ngFor="let item of generosPelicula">{{ item }}</option>
+                <select name="tipo" name="miselect" [(ngModel)]="movieForm.value.tipo" formControlName="tipo">
+                  <option [value]="movieForm.value.tipo" *ngFor="let item of generosPelicula">{{ item }}</option>
                 </select>
               </div>
               <div>
                 <label for="">Cantidad de público:</label>
-                <input type="number" [(ngModel)]="pelicula.cantidadPublico" value="0" name="cantidadPublico" formControlName="cantidadPublico" />
+                <input type="number" [(ngModel)]="movieForm.value.cantidadPublico" value="0" name="cantidadPublico" formControlName="cantidadPublico" />
               </div>
               <div>
                 <label for="country" class="form-label">Actor:</label>

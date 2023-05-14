@@ -7,6 +7,8 @@ import {
   getDoc,
   getDocs,
   updateDoc,
+   doc,
+  setDoc,
 } from '@angular/fire/firestore';
 import { Pelicula } from '../models/pelicula';
 import {
@@ -21,18 +23,24 @@ import { Storage } from '@angular/fire/storage';
 })
 export class PeliculaService {
   listaPeliculas: any;
-  constructor(private firestore: Firestore, private storage: Storage) {
-  }
+  constructor(private firestore: Firestore, private storage: Storage) {}
 
   async guardar(pelicula: Pelicula, imgFile: any) {
     const col = collection(this.firestore, 'peliculas');
     const imgRef = ref(this.storage, `img/${pelicula.nombre}`);
+    pelicula.id = col.id;
     uploadBytes(imgRef, imgFile)
       .then(() => {
         getDownloadURL(imgRef)
-          .then((res) => {
+          .then(async (res) => {
             pelicula.fotoPelicula = res;
-            addDoc(col, pelicula);
+            const docRef = await addDoc(col, pelicula);
+            
+            const id = docRef.id;
+
+            // Actualizar el campo 'id' del objeto guardado
+            const actorDocRef = doc(col, docRef.id);
+            await setDoc(actorDocRef, { ...pelicula, id });
           })
           .catch((err) => {
             console.log(err);

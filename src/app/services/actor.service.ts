@@ -7,6 +7,8 @@ import {
   getDoc,
   getDocs,
   updateDoc,
+  doc,
+  setDoc,
 } from '@angular/fire/firestore';
 import { Actor } from '../models/actor';
 
@@ -19,8 +21,13 @@ export class ActorService {
 
   async guardar(actor: Actor) {
     const col = collection(this.firestore, 'actores');
-    addDoc(col, actor);
-    
+    // Guardar el objeto actor con un ID automático
+    const docRef = await addDoc(col, actor);
+    const id = docRef.id;
+
+    // Actualizar el campo 'id' del objeto guardado
+    const actorDocRef = doc(col, docRef.id);
+    await setDoc(actorDocRef, { ...actor, id });
   }
   async traer() {
     const col = collection(this.firestore, 'actores');

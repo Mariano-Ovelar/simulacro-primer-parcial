@@ -1,6 +1,7 @@
 import { Pais } from './pais';
 
 interface IActor {
+  id?:string;
   nombre: string;
   apellido: string;
   fechaNacimiento: string;
@@ -8,6 +9,7 @@ interface IActor {
 }
 
 export class Actor {
+  id?:string='';
   nombre: string = '';
   apellido: string = '';
   fechaNacimiento: string = '';
