@@ -9,21 +9,46 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { Pelicula } from '../models/pelicula';
+import {
+  ref,
+  FirebaseStorage,
+  uploadBytes,
+  getDownloadURL,
+} from 'firebase/storage';
+import { Storage } from '@angular/fire/storage';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PeliculaService {
-  constructor(private firestore: Firestore) {}
-
-  guardar(pelicula: Pelicula) {
-    const col = collection(this.firestore, 'peliculas');
-    addDoc(col, pelicula);
+  listaPeliculas: any;
+  constructor(private firestore: Firestore, private storage: Storage) {
   }
-  traer() {
+
+  async guardar(pelicula: Pelicula, imgFile: any) {
     const col = collection(this.firestore, 'peliculas');
-    const observable = collectionData(col);
-    observable.subscribe((respuesta)=>{
-      console.log(respuesta);
-    })
+    const imgRef = ref(this.storage, `img/${pelicula.nombre}`);
+    uploadBytes(imgRef, imgFile)
+      .then(() => {
+        getDownloadURL(imgRef)
+          .then((res) => {
+            pelicula.fotoPelicula = res;
+            addDoc(col, pelicula);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  async traer() {
+    const col = collection(this.firestore, 'peliculas');
+    const snapshot = await getDocs(col);
+    const list = snapshot.docs.map((doc) => doc.data());
+    this.listaPeliculas = list;
+    localStorage.setItem('peliculas', JSON.stringify(this.listaPeliculas));
+    return list;
   }
 }

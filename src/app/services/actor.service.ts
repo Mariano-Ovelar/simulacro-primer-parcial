@@ -17,9 +17,10 @@ export class ActorService {
   listaActores: any;
   constructor(private firestore: Firestore) {}
 
-  guardar(actor: Actor) {
+  async guardar(actor: Actor) {
     const col = collection(this.firestore, 'actores');
     addDoc(col, actor);
+    
   }
   async traer() {
     const col = collection(this.firestore, 'actores');

@@ -1,0 +1,27 @@
+<main role="main text-center">
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Buscardor</h1>
+        <!-- === TABLA DE PELICULAS === -->
+        <app-tabla-pelicula
+          [listaPeliculasRecibida]="listaPeliculas"
+          (peliculaSelecionada)="peliculaEleguida($event)"
+        ></app-tabla-pelicula>
+      </div>
+    </div>
+  
+    <div class="container">
+      <div class="row">
+        <!-- === DETALLE DE LA PELICULA SELECIONADA === -->
+        <div class="col-md-4">
+          <h2>Detalle</h2>
+          <app-detalle-pelicula
+            *ngIf="flag"
+            [peliculaRecibida]="peliculaSelecionada"
+          ></app-detalle-pelicula>
+        </div>
+      </div>
+      <hr />
+    </div>
+  </main>
+  
