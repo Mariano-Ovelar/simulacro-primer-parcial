@@ -60,6 +60,7 @@ export class PeliculaAltaComponent {
 
   guardar() {
     this.isLoading = true;
+    this.movieForm.value.actor = this.actorSeleccionado;
     this.peliculaSrv.guardar(this.movieForm.value, this.imgFile).then(() => {
       setTimeout(() => {
         this.router.navigateByUrl('/peliculas/listado');

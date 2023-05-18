@@ -12,19 +12,14 @@ export class PeliculasListadoComponent {
   peliculaMostrar!: any;
   peliculaModificar!: any;
   peliculaSelecionada!: any;
-  listaPeliculas: any= this.peliculaSrv.listaPeliculas;
+  listaPeliculas: any = this.peliculaSrv.listaPeliculas;
 
-  constructor(
-    private peliculaSrv: PeliculaService,
-    private router: Router
-  ) {
+  constructor(private peliculaSrv: PeliculaService, private router: Router) {
     this.peliculaSrv.traer();
   }
   ngOnInit() {
-    this.peliculaSrv.traer().then((peliculas) => {
-      this.listaPeliculas = peliculas;
+    this.peliculaSrv.traer().then(() => {
+      this.listaPeliculas = this.peliculaSrv.listaPeliculas;
     });
   }
- 
-  
 }

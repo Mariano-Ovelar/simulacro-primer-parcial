@@ -9,9 +9,10 @@ import { PeliculaService } from 'src/app/services/pelicula.service';
   styleUrls: ['./actor-pelicula.component.scss'],
 })
 export class ActorPeliculaComponent {
-  listaActores: any;
+  listaActores = this.actorSrv.listaActores;
+  listaPeliculas = this.peliculaSrv.listaPeliculas;
+
   actorSeleccionado: any;
-  listaPeliculas: any;
   listaPeliculasFiltrada: any;
   constructor(
     private actorSrv: ActorService,
@@ -20,11 +21,11 @@ export class ActorPeliculaComponent {
   ) {}
 
   ngOnInit() {
-    this.actorSrv.traer().then((actores) => {
-      this.listaActores = actores;
+    this.actorSrv.traer().then(() => {
+      this.listaActores = this.actorSrv.listaActores;
     });
-    this.peliculaSrv.traer().then((peliculas) => {
-      this.listaPeliculas = peliculas;
+    this.peliculaSrv.traer().then(() => {
+      this.listaPeliculas = this.peliculaSrv.listaPeliculas;
     });
   }
   actorElegido($event: any) {
@@ -32,13 +33,12 @@ export class ActorPeliculaComponent {
     this.listaPeliculasFiltrada = this.listaPeliculas.filter(
       (objeto: any) => objeto.actor.id == this.actorSeleccionado.id
     );
-     
-    console.log("filtro");
+
+    console.log('filtro');
     console.log(this.listaPeliculasFiltrada);
-    console.log("actor");
+    console.log('actor');
     console.log(this.actorSeleccionado);
-    console.log("peliculas");
+    console.log('peliculas');
     console.log(this.listaPeliculas);
-    
   }
 }

@@ -5,15 +5,16 @@ import { ActorService } from 'src/app/services/actor.service';
 @Component({
   selector: 'app-actor-listado',
   templateUrl: './actor-listado.component.html',
-  styleUrls: ['./actor-listado.component.scss']
+  styleUrls: ['./actor-listado.component.scss'],
 })
 export class ActorListadoComponent {
-  listaActores:any;
-  constructor(private actorSrv: ActorService,private router: Router) {}
+  listaActores = this.actorSrv.listaActores;
+
+  constructor(private actorSrv: ActorService, private router: Router) {}
 
   ngOnInit() {
-    this.actorSrv.traer().then((actores) => {
-      this.listaActores = actores;
+    this.actorSrv.traer().then(() => {
+      this.listaActores = this.actorSrv.listaActores;
     });
   }
 }

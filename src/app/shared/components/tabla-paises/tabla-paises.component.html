@@ -9,11 +9,11 @@
     <div class="form-check">
   
       <label>
-        <input class="form-check-input" type="radio" name="options" [value]="pais" (change)="onOptionSelected(pais)"> {{ pais.nombre }}
+        <input class="form-check-input" type="radio" name="options" [value]="pais" (change)="onOptionSelected(pais)"> {{ pais.name.common }}
       </label>
     </div>
     <span>
-      <img src="{{ pais.bandera }}" alt="" />
+      <img src="{{ pais.flags.png }}" alt="" />
     </span>
   </li>
 </ul>

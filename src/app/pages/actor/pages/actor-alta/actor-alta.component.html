@@ -47,8 +47,8 @@
               <div class="col-md-6">
                 <label for="country" class="form-label">País:</label>
                 <div *ngIf="paisSelecionado">
-                  <img src="{{ paisSelecionado.bandera }}" alt="" />
-                  {{ paisSelecionado.nombre }}
+                  <img src="{{ paisSelecionado.flags.png }}" alt="" />
+                  {{ paisSelecionado.name.common}}
                 </div>
                 <div class="invalid-feedback">Please select a valid country.</div>
               </div>

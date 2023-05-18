@@ -16,8 +16,10 @@ import { Actor } from '../models/actor';
   providedIn: 'root',
 })
 export class ActorService {
-  listaActores: any;
-  constructor(private firestore: Firestore) {}
+  public listaActores: any = null;
+  constructor(private firestore: Firestore) {
+    this.actualizarLista();
+  }
 
   async guardar(actor: Actor) {
     const col = collection(this.firestore, 'actores');
@@ -33,8 +35,13 @@ export class ActorService {
     const col = collection(this.firestore, 'actores');
     /*     const observable = collectionData(col);
      */
-    const citySnapshot = await getDocs(col);
-    const cityList = citySnapshot.docs.map((doc) => doc.data());
-    return cityList;
+    const Snapshot = await getDocs(col);
+    const list = Snapshot.docs.map((doc) => doc.data());
+    localStorage.setItem('actores', JSON.stringify(list));
+    this.actualizarLista();
+    return list;
+  }
+  actualizarLista() {
+    this.listaActores = JSON.parse(String(localStorage.getItem('actores')));
   }
 }

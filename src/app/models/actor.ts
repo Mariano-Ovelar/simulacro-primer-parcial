@@ -1,20 +1,17 @@
 import { Pais } from './pais';
 
 interface IActor {
-  id?:string;
+  id?: string;
   nombre: string;
   apellido: string;
   fechaNacimiento: string;
-  pais: Pais;
+  pais: any;
 }
 
 export class Actor {
-  id?:string='';
+  id?: string = '';
   nombre: string = '';
   apellido: string = '';
   fechaNacimiento: string = '';
-  pais: Pais = {
-    nombre: '',
-    bandera: '',
-  };
+  pais: any = {};
 }

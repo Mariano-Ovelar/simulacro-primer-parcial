@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Actor } from 'src/app/models/actor';
 import { Pais } from 'src/app/models/pais';
 import { ActorService } from 'src/app/services/actor.service';
+import { PaisService } from 'src/app/services/pais.service';
 
 @Component({
   selector: 'app-actor-alta',
@@ -12,9 +13,22 @@ import { ActorService } from 'src/app/services/actor.service';
 })
 export class ActorAltaComponent {
   isLoading = false;
+  data: any[] = [];
+  constructor(
+    private actorSrv: ActorService,
+    private router: Router,
+    private paisSrv: PaisService
+  ) {}
 
-  constructor(private actorSrv: ActorService,private router: Router) {}
-
+  ngOnInit() {
+    this.llenarData();
+  }
+  llenarData() {
+    this.paisSrv.getData().subscribe((data) => {
+      this.listaPaises = data;
+      console.log(this.listaPaises);
+    });
+  }
   paisSelecionado?: any;
   actor: Actor = {
     nombre: '',
@@ -23,33 +37,7 @@ export class ActorAltaComponent {
     fechaNacimiento: '',
   };
 
-  listaPaises = [
-    {
-      nombre: 'Argentina',
-      bandera:
-        'https://cdn.icon-icons.com/icons2/3665/PNG/512/argentina_flag_icon_228621.png',
-    },
-    {
-      nombre: 'España',
-      bandera:
-        'https://cdn.icon-icons.com/icons2/3665/PNG/512/spain_flag_icon_228692.png',
-    },
-    {
-      nombre: 'Estados unidos',
-      bandera:
-        'https://cdn.icon-icons.com/icons2/3665/PNG/512/usa_flag_united_states_america_icon_228698.png',
-    },
-    {
-      nombre: 'Brasil',
-      bandera:
-        'https://cdn.icon-icons.com/icons2/3665/PNG/512/brazil_flag_icon_228666.png',
-    },
-    {
-      nombre: 'México',
-      bandera:
-        'https://cdn.icon-icons.com/icons2/3665/PNG/512/mexico_flag_icon_228684.png',
-    },
-  ];
+  listaPaises = [];
 
   selecionPais($event: any) {
     this.paisSelecionado = $event;
